@@ -10,7 +10,7 @@ services:
     networks:
       - dummylink
 
-  device_1:
+  device1:
     build: ./traffic-generator/
     depends_on:
       - mqtt
@@ -18,10 +18,11 @@ services:
       - BROKER_URL=mqtt
       - BROKER_PORT=1883
       - DEVICE_NAME=device1
+      - STATE_FILE_PATH=/opt/device/state
     networks:
       - dummylink
 
-  device_2:
+  device2:
     build: ./traffic-generator/
     depends_on:
       - mqtt
@@ -29,10 +30,11 @@ services:
       - BROKER_URL=mqtt
       - BROKER_PORT=1883
       - DEVICE_NAME=device2
+      - STATE_FILE_PATH=/opt/device/state
     networks:
       - dummylink
 
-  device_3:
+  device3:
     build: ./traffic-generator/
     depends_on:
       - mqtt
@@ -40,9 +42,33 @@ services:
       - BROKER_URL=mqtt
       - BROKER_PORT=1883
       - DEVICE_NAME=device3
+      - STATE_FILE_PATH=/opt/device/state
     networks:
       - dummylink
 
+  device4:
+    build: ./traffic-generator/
+    depends_on:
+      - mqtt
+    environment:
+      - BROKER_URL=mqtt
+      - BROKER_PORT=1883
+      - DEVICE_NAME=device4
+      - STATE_FILE_PATH=/opt/device/state
+    networks:
+      - dummylink
+
+  device5:
+    build: ./traffic-generator/
+    depends_on:
+      - mqtt
+    environment:
+      - BROKER_URL=mqtt
+      - BROKER_PORT=1883
+      - DEVICE_NAME=device5
+      - STATE_FILE_PATH=/opt/device/state
+    networks:
+      - dummylink
 
 networks:
   dummylink:
