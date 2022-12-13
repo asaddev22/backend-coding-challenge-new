@@ -1,0 +1,69 @@
+mqtt:
+  host: mqtt
+  port: 1883
+  client-id: viotas-test
+  topic-prefix: dummylink/
+
+http:
+  bind: 0.0.0.0
+  port: 8080
+
+cache:
+  root: data/cache
+
+panels:
+  - title: VIOTAS
+    icon: widgets
+    groups:
+      - device1
+      - device2
+      - device3
+      - device4
+      - device5
+
+groups:
+  - title: Device 1
+    name: device1
+    widgets:
+      - title: Frequency
+        type: text
+        subscribe: device1/data/frequency
+      - title: Status
+        type: text
+        subscribe: device1/data/status
+  - title: Device 2
+    name: device2
+    widgets:
+      - title: Frequency
+        type: text
+        subscribe: device2/data/frequency
+      - title: Status
+        type: text
+        subscribe: device2/data/status
+  - title: Device 3
+    name: device3
+    widgets:
+      - title: Frequency
+        type: text
+        subscribe: device3/data/frequency
+      - title: Status
+        type: text
+        subscribe: device3/data/status
+  - title: Device 4
+    name: device4
+    widgets:
+      - title: Frequency
+        type: text
+        subscribe: device4/data/frequency
+      - title: Status
+        type: text
+        subscribe: device4/data/status
+  - title: Device 5
+    name: device5
+    widgets:
+      - title: Frequency
+        type: text
+        subscribe: device5/data/frequency
+      - title: Status
+        type: text
+        subscribe: device5/data/status

@@ -1,0 +1,86 @@
+version: "3.9"
+
+services:
+  mqtt:
+    image: "eclipse-mosquitto"
+    volumes:
+      - $PWD/conf/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    ports:
+      - 1883:1883
+    networks:
+      - dummylink
+
+  mqtt-panel:
+    image: sourcesimian/mqtt-panel
+    depends_on:
+      - mqtt
+    volumes:
+      - $PWD/conf/mqtt-panel.yaml:/config.yaml
+      - $PWD/cache/mqtt-panel:/data/cache
+    ports:
+      - 8888:8080
+    networks:
+      - dummylink
+
+  device1:
+    build: ./traffic-generator/
+    depends_on:
+      - mqtt
+    environment:
+      - BROKER_URL=mqtt
+      - BROKER_PORT=1883
+      - DEVICE_NAME=device1
+      - STATE_FILE_PATH=/opt/device/state
+    networks:
+      - dummylink
+
+  device2:
+    build: ./traffic-generator/
+    depends_on:
+      - mqtt
+    environment:
+      - BROKER_URL=mqtt
+      - BROKER_PORT=1883
+      - DEVICE_NAME=device2
+      - STATE_FILE_PATH=/opt/device/state
+    networks:
+      - dummylink
+
+  device3:
+    build: ./traffic-generator/
+    depends_on:
+      - mqtt
+    environment:
+      - BROKER_URL=mqtt
+      - BROKER_PORT=1883
+      - DEVICE_NAME=device3
+      - STATE_FILE_PATH=/opt/device/state
+    networks:
+      - dummylink
+
+  device4:
+    build: ./traffic-generator/
+    depends_on:
+      - mqtt
+    environment:
+      - BROKER_URL=mqtt
+      - BROKER_PORT=1883
+      - DEVICE_NAME=device4
+      - STATE_FILE_PATH=/opt/device/state
+    networks:
+      - dummylink
+
+  device5:
+    build: ./traffic-generator/
+    depends_on:
+      - mqtt
+    environment:
+      - BROKER_URL=mqtt
+      - BROKER_PORT=1883
+      - DEVICE_NAME=device5
+      - STATE_FILE_PATH=/opt/device/state
+    networks:
+      - dummylink
+
+networks:
+  dummylink:
