@@ -9,6 +9,17 @@ services:
       - 1883:1883
     networks:
       - dummylink
+  frequency-api:
+    build: 
+      dockerfile: ./frequency-api/
+      context: .
+      target: production
+    depends_on:
+      - mqtt
+    ports:
+      - 3000:3000
+    networks:
+      - dummylink
 
   device1:
     build: ./traffic-generator/

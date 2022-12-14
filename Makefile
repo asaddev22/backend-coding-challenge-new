@@ -1,8 +1,8 @@
-broker-up:
-	@docker-compose up --remove-orphans -d mqtt
+backend-up:
+	@docker-compose up --remove-orphans -d mqtt frequency-api
 
-broker-down:
-	@docker-compose stop mqtt
+backend-down:
+	@docker-compose stop mqtt frequency-api
 
 device-up:
 	@if test -z "$(d)"; then docker-compose up -d device1 device2 device3; else docker-compose up -d $(d); fi
