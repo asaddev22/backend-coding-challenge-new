@@ -114,27 +114,27 @@ There are four components in this development environment:
 
 Please ensure that you have Docker, Docker Compose, and Make installed on your environment. 
 
- 
+1. **setup with:** `make setup`
 
-1. Step 1: start the API, Broker and Probe with: `make backend-up`
+2. **start the API, Broker and Probe with:** `make backend-up`
 
-2. Step 2: open your browser and navigate to http://0.0.0.0:8888/ . You can see an entry for each device, but no events being captured. 
+3. **open your browser and navigate to:** http://0.0.0.0:8888/ . You can see an entry for each device, but no events being captured. 
 
-3. Step 3: start a device with: `make device=1 device-up` (alternatively, you can start all 5 devices by omitting the device argument). 
+4. **start a device with:** `make device=1 device-up` (alternatively, you can start all 5 devices by omitting the device argument). 
 
-4. Step 4: check the device status with: `make device=1 get-state` (you must specify a device). You should receive the default behaviour: 0,NOISY. There are four possible states: 
+5. **check the device status with:** `make device=1 get-state` (you must specify a device). You should receive the default behaviour: 0,NOISY. There are four possible states: 
 
-    * 0,NOISY – this is the default state, the device can post regular readings, low frequency readings, and faults. 
+    * `0,NOISY` – this is the default state, the device can post regular readings, low frequency readings, and faults. 
 
-    * 1,REGULAR – in this state, the device will publish frequency readings in a range between 49Hz to 50Hz and a status OK. 
+    * `1,REGULAR` – in this state, the device will publish frequency readings in a range between 49Hz to 50Hz and a status OK. 
 
-    * 2,LOW – in this state, the device will publish frequency readings in a range between 38Hz to 42Hz and a status OK. 
+    * `2,LOW` – in this state, the device will publish frequency readings in a range between 38Hz to 42Hz and a status OK. 
 
-    * 3,FAULTY – in this state, the device will publish frequency reading equal to –1Hz and a status ERROR. 
+    * `3,FAULTY` – in this state, the device will publish frequency reading equal to –1Hz and a status ERROR. 
 
-5. Step 5: you can change the state of a device with: `make device=1 state=1 set-state`. The s argument should be the numerical value of the list above. If you supply and invalid value the device will default to 0,NOISY. You can verify the change by following Step 4. 
+6. **you can change the state of a device with:** `make device=1 state=1 set-state`. The s argument should be the numerical value of the list above. If you supply and invalid value the device will default to 0,NOISY. You can verify the change by following Step 4. 
 
-6. Step 6: you can simulate an outage by stopping a device with:  `make device=1 device-down` (alternatively, you can start all 5 devices by omitting the device argument). 
+7. **you can simulate an outage by stopping a device with:** `make device=1 device-down` (alternatively, you can start all 5 devices by omitting the device argument). 
 
 
 **Attention:**  DO NOT screen scrape the MQTT Probe, subscribe to the MQTT Broker. The probe is a testing tool put in place to facilitate your development process. We will not consider any code that leverages it. 

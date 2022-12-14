@@ -1,3 +1,6 @@
+setup:
+	@docker-compose build
+
 backend-up:
 	@docker-compose up --remove-orphans -d mqtt mqtt-panel frequency-api
 

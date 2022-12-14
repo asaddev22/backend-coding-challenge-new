@@ -20,17 +20,16 @@ services:
       - 8888:8080
     networks:
       - dummylink
+
   frequency-api:
-    build: 
-      dockerfile: ./frequency-api/
-      context: .
-      target: production
+    build: ./frequency-api/
     depends_on:
       - mqtt
     ports:
       - 3000:3000
     networks:
       - dummylink
+  
   device1:
     build: ./traffic-generator/
     depends_on:
