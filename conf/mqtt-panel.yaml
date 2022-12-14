@@ -1,7 +1,7 @@
 mqtt:
   host: mqtt
   port: 1883
-  client-id: viotas-test
+  client-id: dummylink-test
   topic-prefix: dummylink/
 
 http:
@@ -12,7 +12,7 @@ cache:
   root: data/cache
 
 panels:
-  - title: VIOTAS
+  - title: DummyLink
     icon: widgets
     groups:
       - device1
