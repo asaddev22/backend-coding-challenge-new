@@ -1,8 +1,8 @@
 backend-up:
-	@docker-compose up --remove-orphans -d mqtt frequency-api
+	@docker-compose up --remove-orphans -d mqtt mqtt-panel frequency-api
 
 backend-down:
-	@docker-compose stop mqtt frequency-api
+	@docker-compose stop mqtt mqtt-panel frequency-api
 
 device-up:
 	@if test -z "$(device)"; then docker-compose up -d device1 device2 device3 device4 device5; else docker-compose up -d "device$(device)"; fi

@@ -9,6 +9,17 @@ services:
       - 1883:1883
     networks:
       - dummylink
+  mqtt-panel:
+    image: sourcesimian/mqtt-panel
+    depends_on:
+      - mqtt
+    volumes:
+      - $PWD/conf/mqtt-panel.yaml:/config.yaml
+      - $PWD/cache/mqtt-panel:/data/cache
+    ports:
+      - 8888:8080
+    networks:
+      - dummylink
   frequency-api:
     build: 
       dockerfile: ./frequency-api/
@@ -20,7 +31,6 @@ services:
       - 3000:3000
     networks:
       - dummylink
-
   device1:
     build: ./traffic-generator/
     depends_on:

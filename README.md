@@ -120,7 +120,7 @@ Please ensure that you have Docker, Docker Compose, and Make installed on your e
 
 2. Step 2: open your browser and navigate to http://0.0.0.0:8888/ . You can see an entry for each device, but no events being captured. 
 
-3. Step 3: start a device with: make device=1 device-up (alternatively, you can start all 5 devices by omitting the device argument). 
+3. Step 3: start a device with: `make device=1 device-up` (alternatively, you can start all 5 devices by omitting the device argument). 
 
 4. Step 4: check the device status with: `make device=1 get-state` (you must specify a device). You should receive the default behaviour: 0,NOISY. There are four possible states: 
 
