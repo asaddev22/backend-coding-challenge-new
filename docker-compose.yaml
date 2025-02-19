@@ -1,21 +1,21 @@
-version: "3.9"
-
+version: "3.8"
 services:
   mqtt:
     image: "eclipse-mosquitto"
     volumes:
-      - $PWD/conf/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./conf/mosquitto.conf:/mosquitto/config/mosquitto.conf
     ports:
       - 1883:1883
     networks:
       - dummylink
+
   mqtt-panel:
     image: sourcesimian/mqtt-panel
     depends_on:
       - mqtt
     volumes:
-      - $PWD/conf/mqtt-panel.yaml:/config.yaml
-      - $PWD/cache/mqtt-panel:/data/cache
+      - ./conf/mqtt-panel.yaml:/config.yaml
+      - ./cache/mqtt-panel:/data/cache
     ports:
       - 8888:8080
     networks:
@@ -29,7 +29,7 @@ services:
       - 3000:3000
     networks:
       - dummylink
-  
+
   device1:
     build: ./traffic-generator/
     depends_on:
@@ -41,7 +41,7 @@ services:
       - STATE_FILE_PATH=/opt/device/state
     networks:
       - dummylink
-
+    command: python /opt/device/src/simulation.py 1 
   device2:
     build: ./traffic-generator/
     depends_on:
@@ -53,6 +53,8 @@ services:
       - STATE_FILE_PATH=/opt/device/state
     networks:
       - dummylink
+    command: python /opt/device/src/simulation.py 2
+
 
   device3:
     build: ./traffic-generator/
@@ -65,7 +67,7 @@ services:
       - STATE_FILE_PATH=/opt/device/state
     networks:
       - dummylink
-
+    command: python /opt/device/src/simulation.py 3
   device4:
     build: ./traffic-generator/
     depends_on:
@@ -77,7 +79,7 @@ services:
       - STATE_FILE_PATH=/opt/device/state
     networks:
       - dummylink
-
+    command: python /opt/device/src/simulation.py 4
   device5:
     build: ./traffic-generator/
     depends_on:
@@ -89,6 +91,19 @@ services:
       - STATE_FILE_PATH=/opt/device/state
     networks:
       - dummylink
+    command: python /opt/device/src/simulation.py 5
+  your-microservice:  
+    build:
+      context: ./your-microservice
+      dockerfile: Dockerfile
+    depends_on:
+      - mqtt
+      - frequency-api 
+    environment:
+      - MQTT_BROKER=mqtt://mqtt:1883  
+      - API_BASE_URL=http://frequency-api:3000 
+    networks:
+      - dummylink 
 
 networks:
-  dummylink:
+  dummylink: {}

@@ -1,0 +1,28 @@
+{
+  "name": "your-microservice",
+  "version": "1.0.0",
+  "description": "Your microservice can go in this directory!",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nestjs/common": "^11.0.10",
+    "@nestjs/core": "^11.0.10",
+    "@nestjs/microservices": "^11.0.10",
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mqtt": "^5.10.3",
+    "nestjs": "^0.0.1",
+    "node-cache": "^5.1.2",
+    "nodemon": "^3.1.9"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^11.0.10"
+  }
+}
